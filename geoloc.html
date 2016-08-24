@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>HTML5 Demo: geolocation</title>
+</head>
+<script>
+  function success(position)
+  {
+    var s = document.querySelector('#status');
+    
+    if (s.className == 'success') {
+      // not sure why we're hitting this twice in FF, I think it's to do with a cached result coming back    
+      return;
+    }
+    
+    s.innerHTML = "found you!";
+    s.className = 'success';
+
+    var latitude = document.querySelector('#lat');
+    latitude.innerHTML = position.coords.latitude;
+    
+    var longitude = document.querySelector('#long');
+    longitude.innerHTML = position.coords.longitude;
+    
+    var mapcanvas = document.createElement('div');
+    mapcanvas.id = 'mapcanvas';
+    mapcanvas.style.height = '400px';
+    mapcanvas.style.width = '560px';
+    document.querySelector('article').appendChild(mapcanvas);
+
+    var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+    var myOptions = {
+      zoom: 18,
+      center: latlng,
+      mapTypeControl: false,
+      navigationControlOptions: {style: google.maps.NavigationControlStyle.SMALL},
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    var map = new google.maps.Map(document.getElementById("mapcanvas"), myOptions);
+    
+    var marker = new google.maps.Marker({
+        position: latlng, 
+        map: map, 
+        title:"You are here! (at least within a " + position.coords.accuracy + " meter radius)"
+    });
+  }
+  var loadhandler = function ()
+  {
+    // ip-based geolocate
+    // success({"coords" : {"latitude": 26.5048024, "longitude": -80.1862955, "accuracy": 20}});
+    success({"coords" : {"latitude": 37.4031925, "longitude": -122.0792074, "accuracy": 20}});
+    // success({"coords" : {"latitude": 37.4131209, "longitude": -122.0866592, "accuracy": 150}});
+    //success({"coords" : {"latitude": 37.4129722, "longitude": -122.0867181, "accuracy": 150}});
+  }
+ window.onload = loadhandler;
+</script>
+<body>
+<section id="wrapper">
+    <h1>geolocation</h1>
+
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+    <article>
+      <p>Finding your location: <span id="status">checking...</span></p>
+      <p>
+      Latitude: <span id="lat"></span><br>
+      Longitude: <span id="long"></span>
+      </p>
+    </article>
+</section>
+
+</body>
+</html>
