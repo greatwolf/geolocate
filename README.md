@@ -8,7 +8,7 @@ for each of those input files.
 The input file should contain bssid(access point's MAC) and 
 signal per line using this format:
 
-> BSSID <number> : <6-byte MAC address> Signal : <signal strength percent>%
+> BSSID <number> : <6-byte MAC address> Signal : <signal strength percent> %
 
 Note that Google's geolocation API requires at least 2 sets of
 BSSID data to work.
