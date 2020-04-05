@@ -22,8 +22,7 @@ local json = require 'dkjson'
 local https = require 'ssl.https'
 
 local url = "https://www.googleapis.com/geolocation/v1/geolocate"
-local api_key = "AIzaSyBOti4mM-6x9WDnZIjIeyEU21OpBXqWBgw"-- google's chrome apikey
--- local api_key = "AIzaSyB8fLcbN9IGtPDsV7l39RETYO9PO6Hq5R4"
+local api_key = "AIzaSyBOti4mM-6x9WDnZIjIeyEU21OpBXqWBgw" -- google's chrome apikey
 local function calc_rssi (signal_percent)
   local dbmin, dbmax = -100, -40
   local dbrange = dbmax - dbmin
