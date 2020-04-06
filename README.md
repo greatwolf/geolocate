@@ -26,4 +26,4 @@ The Lua script uses the following external lua libraries:
  - dkjson for dealing with json messages
  - luasocket's http module for doing REST request
  - luasec's https module for handling ssl/tls communication.
- 
+ - luacom for displaying generated map page in browser w/o blocking
